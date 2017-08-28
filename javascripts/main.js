@@ -6,7 +6,8 @@ let movieAPILoader = require('./api.js'),
     movieTemplate = require("../templates/movie-card.hbs"),
     handlebarHelper = require("./hbsHelpers.js"),
     firebase= require("./firebase.js"),
-    user = require("./user.js");
+    user = require("./user.js"),
+    toggleKeys = require("./userProfileToggles.js");
 
 var movieIDsArray = [];
 var movieObjArray = [];

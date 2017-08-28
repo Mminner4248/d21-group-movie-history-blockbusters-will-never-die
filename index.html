@@ -55,36 +55,58 @@
 
 
     <!-- USER VIEW -->
-    <div id="userView" class="container is-hidden">
-      <div class="row">
-        <div class="col s3 gray">
-                <img src="images/atomix_user31.png">
-                <h4>User Name</h4>
-        </div>
-
-        <div class="col s9">
-          <!-- USER SEARCH BAR -->
-            <div class="row center">
-                <input type="text" id="userSearchBar" placeholder="Search for Movies!">
-              </div>
-          <!-- BREADCRUMBS -->
-          <h4 id="breadcrumbs">BREADCRUMBS Placeholder ></h4>
-
-          <!-- MOVIES PRINT TO DOM HERE -->
-          <div id="userMovies">
-            <h2>MOVIES PRINT TO DOM HERE</h2>
+    <div id="userView" class="container">
+      <!-- PROFILE COLUMN BEGIN-->
+        <div class="row">
+          <div class="col s3 gray">
+                  <img src="images/atomix_user31.png">
+                  <h4>User Name</h4>
+                  <a class="waves-effect waves-light btn" id="unwatched">UNWATCHED</a>
+                  <a class="waves-effect waves-light btn" id="watched">WATCHED</a>
           </div>
-        </div>
-        
+      <!-- PROFILE COLUMN END-->
+
+      <!-- MOVIES COLUMN BEGIN-->
+          <div class="col s9 white">
+            <!-- USER SEARCH BAR -->
+              <div class="row center">
+                  <input type="text" id="userSearchBar" placeholder="Search for Movies!">
+                </div>
+            <!-- BREADCRUMBS & TOGGLE BUTTONS-->
+            <h4 id="breadcrumbs">BREADCRUMBS Placeholder ></h4>
+            <div class="toggle-btns">
+              <a class="waves-effect waves-light btn" id="untracked">SHOW UNTRACKED</a>
+
+              <div class="range-field">
+                  <input type="range" id="ratingSlider" min="0" max="10"/>
+              </div>
+            </div>
+            
+
+            <!-- MOVIES PRINT TO DOM HERE -->
+            <div id="userMovies">
+              <h2>MOVIES PRINT TO DOM HERE</h2>
+              <h2>MOVIES PRINT TO DOM HERE</h2>
+              <h2>MOVIES PRINT TO DOM HERE</h2>
+              <h2>MOVIES PRINT TO DOM HERE</h2>
+              <h2>MOVIES PRINT TO DOM HERE</h2>
+              <h2>MOVIES PRINT TO DOM HERE</h2>
+              <h2>MOVIES PRINT TO DOM HERE</h2>
+              <h2>MOVIES PRINT TO DOM HERE</h2>
+              <h2>MOVIES PRINT TO DOM HERE</h2>
+              
+            </div>
+          </div>
+        <!-- MOVIES COLUMN END-->
       </div>   
     </div>
 
   </main>
   <!-- MAIN CONTAINER END -->
 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
 
 
   <script src="dist/app.js"></script>

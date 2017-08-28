@@ -1,6 +1,5 @@
 "use strict";
 // movie database api configure
-console.log("api.js loaded");
 
 let MovieAPI = {};
 

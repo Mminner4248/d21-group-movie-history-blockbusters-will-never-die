@@ -1,10 +1,9 @@
 "use strict";
-let firebase = require('./firebaseConfig.js');
+let firebase = require('../lib/node_modules/firebase');
 let provider = new firebase.auth.GoogleAuthProvider();
 let currentUser = null;
 
 firebase.auth().onAuthStateChanged((user) => {
-    console.log("onAuthStateChanged", user);
     if (user){
         currentUser = user.uid;
         console.log("current user Logged in?", currentUser);

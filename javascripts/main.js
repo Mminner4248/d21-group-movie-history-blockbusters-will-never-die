@@ -1,6 +1,4 @@
 'use strict';
-console.log("main js loaded");
-
 
 let movieAPILoader = require('./api.js'),
     $ = require('jquery'),
@@ -13,33 +11,51 @@ let movieAPILoader = require('./api.js'),
 var movieIDsArray = [];
 var movieObjArray = [];
 
-$("#GoMALCOLM").click(function(){ //clicks or presses enter
+let testInput = {
+  title: "Michael",
+  overview: "hello I am michael",
+  poster_path: "/lakdjfaklsdfjas.jpg",
+  id: 238,
+  release_date: '1972-03-14',
+  rating: 0,
+  watched: false,
+  inFB: false
+};
+
+// firebase.testPush(testInput);
+
+$("#searchBar").on('keyup', function(e){ //clicks or presses enter
     // gets value from search
-    let movieSearch = document.getElementById("searchBar").value;
+    if (e.keyCode === 13) {
+      let movieSearch = document.getElementById("searchBar").value;
+      let movieObject = {};
 
-
-    movieAPILoader.getMovies(movieSearch)
+      movieAPILoader.getMovies(movieSearch)
         .then((movieData)=>{
-           // console.log('movie data retrieved', movieData);
-           movieData.results.forEach((movie)=>{
-               requestMovieByID(movie);
+           console.log('movie data retrieved', movieData);
+           let movies = movieData.results;
+           movies.forEach((item, index)=>{
+               movieObject[index] = item;
            });
+           console.log("movieObject", movieObject);
         });
+    }
 
 });
 
 function requestMovieByID(movieID) {
-    movieAPILoader.getMoviesWithCredits(movieID.id)
-        .then((movieDataWithCredits)=>{
-        movieObjArray = [];
-        movieObjArray.push(movieDataWithCredits);
-        loadMoviesToDOM(movieObjArray);
-        }); 
+  movieAPILoader.getMoviesWithCredits(movieID.id)
+      .then((movieDataWithCredits)=>{
+      // movieObjArray = [];
+      // movieObjArray.push(movieDataWithCredits);
+      // loadMoviesToDOM(movieObjArray);
+  });
 }
 
 
 function loadMoviesToDOM(movieData) {
-    $("#movieDiv").append(movieTemplate(movieData));
+    console.log(movieData);
+    $(".row").append(movieTemplate(movieData));
 }
 
 
@@ -55,4 +71,3 @@ $("#logout").click(() => {
   console.log("logout clicked");
   user.logout();
 });
-

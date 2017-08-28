@@ -2,7 +2,6 @@
 
 let movieAPILoader = require('./api.js'),
     $ = require('jquery'),
-    buildCard = require("./dom-builder.js"),
     movieTemplate = require("../templates/movie-card.hbs"),
     handlebarHelper = require("./hbsHelpers.js"),
     firebase= require("./firebase.js"),
@@ -23,7 +22,7 @@ let testInput = {
   uid: 111
 };
 
-firebase.testPush(testInput);
+// firebase.testPush(testInput);
 
 $("#searchBar").on('keyup', function(e){ //clicks or presses enter
     // gets value from search
@@ -46,7 +45,10 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
 
 $('#userSearchBar').on('keyup', function(e) {
   if (e.keyCode === 13) {
-    
+    firebase.getWatchList()
+    .then((data) => {
+      loadMoviesToDOM(data);
+    });
   }
 });
 

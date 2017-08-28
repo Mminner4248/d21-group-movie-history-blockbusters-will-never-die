@@ -4,7 +4,7 @@ var firebase = require('firebase'),
     fb = require("./fb-keys"),
     fbData = fb();
 var movies = require('./api');
-
+var $ = require('jquery');
 var config = {
   apiKey: fbData.apiKey,
   authDomain: fbData.authDomain,
@@ -23,6 +23,13 @@ movies.getMovies('the godfather')
 
 let fdr = firebase.database();
 var fire = {
+  getCurrentUser: function(){
+    if (firebase.auth().currentUser === null) {
+      return 111;
+    } else {
+      return firebase.auth().currentUser.uid;
+    }
+  },
   testPush: function(item) {
     let year = item.release_date.slice(0, item.release_date.indexOf('-'));
     let dbRef = fdr.ref();
@@ -40,7 +47,15 @@ var fire = {
   },
 
   getWatchList: function() {
-    
+    return new Promise((resolve, reject) => {
+      let userID = fire.getCurrentUser();
+      console.log("userID", userID);
+      $.ajax({
+        url: `https://moviehistorydb.firebaseio.com/.json?orderBy="uid"&equalTo="${userID}"`
+      }).done((data) => {
+        resolve(data);
+      });
+    });
   }
 };
 

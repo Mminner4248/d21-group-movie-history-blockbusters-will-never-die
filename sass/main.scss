@@ -1,9 +1,24 @@
+
+// **** Card Styles **** //
+
+img.activator {
+  height: 400px !important;
+  overflow: hidden !important;
+}
+
+div.card-content {
+  height: 100px !important;
+  padding: 16px !important;
+  padding-right: 0 !important;
+  padding-left: 24px !important;
+}
+
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     // background-image: url("../images/collage-copy.jpg");
-    background: url(../images/collage-copy.jpg) no-repeat center center fixed; 
+    background: url(../images/collage-copy.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

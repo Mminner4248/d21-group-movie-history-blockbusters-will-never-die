@@ -2,7 +2,6 @@
 
 let movieAPILoader = require('./api.js'),
     $ = require('jquery'),
-    buildCard = require("./dom-builder.js"),
     movieTemplate = require("../templates/movie-card.hbs"),
     handlebarHelper = require("./hbsHelpers.js"),
     firebase= require("./firebase.js"),
@@ -20,7 +19,8 @@ let testInput = {
   release_date: '1972-03-14',
   rating: 0,
   watched: false,
-  inFB: false
+  inFB: false,
+  uid: 111
 };
 
 // firebase.testPush(testInput);
@@ -39,9 +39,18 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
                movieObject[index] = item;
            });
            console.log("movieObject", movieObject);
+           loadMoviesToDOM(movieObject);
         });
     }
+});
 
+$('#userSearchBar').on('keyup', function(e) {
+  if (e.keyCode === 13) {
+    firebase.getWatchList()
+    .then((data) => {
+      loadMoviesToDOM(data);
+    });
+  }
 });
 
 function requestMovieByID(movieID) {

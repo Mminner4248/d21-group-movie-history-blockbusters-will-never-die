@@ -1,66 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <title>MT. MATT FLIX KILLED BLOCKBUSTER</title>
-  <meta name="description" content="DESCRIPTION">
+  <head>
+    <meta charset="UTF-8">
+    <title>MT. MATT FLIX KILLED BLOCKBUSTER</title>
+    <meta name="description" content="DESCRIPTION">
 
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">  
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">  
 
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
 
-<body>
-  <!-- NAVIGATION BEGIN -->
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-          <li><input id="logout" type="button" value="Log out"></li>
-      </ul>
-    </div>
-  </nav>
-<!-- NAVIGATION END -->
-
-  <div class="section no-pad-bot" id="index-banner">
-
-    <!-- HERO HEADER BEGINNING-->
-    <div class="container">
-        <div id="movieDiv"></div>
-      <!-- <h1 class="header center orange-text">Search for Movies!</h1> -->
-      <div class="row center">
-        <input type="text" id="searchBar" placeholder="Search for Movies!">
+  <body>
+    <!-- NAVIGATION BEGIN -->
+    <div class="navbar-fixed">
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+            <li><input id="logout" type="button" value="Log out"></li>
+        </ul>
       </div>
-      <div class="row center">
-        <a href="#" id="auth-btn" class="btn-large waves-effect waves-light orange">Login to Save Your Favs!</a>
-      </div>
-      <br><br>
-
+    </nav>
     </div>
-  </div>
+  <!-- NAVIGATION END -->
 
-  <!-- HERO HEADER END-->
-
-<!-- MAIN CONTAINER BEGINNING -->
-<main>
-  <div class="container">
+  <!-- MAIN CONTAINER BEGINNING -->
+  <main>
 
 
-  </div>
-</main>
-<!-- MAIN CONTAINER END -->
+    <!-- SEARCH VIEW -->
+    <div id="searchView" class="container">
+        <div class="section no-pad-bot" id="index-banner">
+        <!-- SEARCH BEGINNING-->
+          <div class="container">
+              <div id="movieDiv"></div>
+            <div class="row center">
+              <input type="text" id="searchBar" placeholder="Search for Movies!">
+            </div>
+            <div class="row center">
+              <a href="#" id="auth-btn" class="btn-large waves-effect waves-light orange">Login to Save Your Favs!</a>
+            </div>
+          </div>
+        </div>
+        <div id="mainSearchResults">
+            
+        </div>
+    </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- USER VIEW -->
+    <div id="userView" class="container is-hidden">
+      <div class="row">
+        <div class="col s3 gray">
+                <img src="images/atomix_user31.png">
+                <h4>User Name</h4>
+        </div>
+
+        <div class="col s9">
+          <!-- USER SEARCH BAR -->
+            <div class="row center">
+                <input type="text" id="userSearchBar" placeholder="Search for Movies!">
+              </div>
+          <!-- BREADCRUMBS -->
+          <h4 id="breadcrumbs">BREADCRUMBS Placeholder ></h4>
+
+          <!-- MOVIES PRINT TO DOM HERE -->
+          <div id="userMovies">
+            <h2>MOVIES PRINT TO DOM HERE</h2>
+          </div>
+        </div>
+        
+      </div>   
+    </div>
+
+  </main>
+  <!-- MAIN CONTAINER END -->
 
 
-<script src="dist/app.js"></script>
-</body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+  <script src="dist/app.js"></script>
+  </body>
 
 </html>

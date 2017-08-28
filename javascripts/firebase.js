@@ -34,8 +34,13 @@ var fire = {
       movieID: item.id,
       rating: 0,
       watched: false,
-      inFB: false
+      inFB: false,
+      uid: item.uid
     });
+  },
+
+  getWatchList: function() {
+    
   }
 };
 

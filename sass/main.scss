@@ -11,9 +11,9 @@ div.card-content {
   padding: 16px !important;
   padding-right: 0 !important;
   padding-left: 24px !important;
-
-html { 
-    background: url(../images/collage-copy.jpg) no-repeat center center fixed; 
+}
+html {
+    background: url(../images/collage-copy.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -38,7 +38,7 @@ body {
     text-align: center;
     font-size: 3em;
   }
-  
+
 #searchBar::placeholder {
     color: gray;
     text-align: center;

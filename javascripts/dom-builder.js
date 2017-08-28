@@ -6,7 +6,7 @@ let $ = require('jquery'),
 
 function makeMovieCards(movieData){
     let card = document.createElement("div");
-    card.innerHTML = `<img src="https://image.tmdb.org/t/p/w500/${movieData.poster_path}">
+    card.innerHTML = `<img src="https://image.tmdb.org/t/p/w342/${movieData.poster_path}">
                     <h3>${movieData.original_title}</h3>
                     <p>${movieData.release_date}</p>
                     <p>${movieData.overview}</p>

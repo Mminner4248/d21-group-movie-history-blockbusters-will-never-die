@@ -1,14 +1,45 @@
 'use strict';
 
-console.log("firebase is connected");
+var firebase = require('firebase'),
+    fb = require("./fb-keys"),
+    fbData = fb();
+var movies = require('./api');
 
+var config = {
+  apiKey: fbData.apiKey,
+  authDomain: fbData.authDomain,
+  databaseURL: fbData.databaseURL,
+  projectId: "moviehistorydb",
+  storageBucket: "moviehistorydb.appspot.com",
+  messagingSenderId: "1015573230583"
+};
 
+firebase.initializeApp(config);
 
+movies.getMovies('the godfather')
+.then((data) => {
+  console.log("data", data);
+});
 
+let fdr = firebase.database();
+var fire = {
+  testPush: function(item) {
+    let year = item.release_date.slice(0, item.release_date.indexOf('-'));
+    let dbRef = fdr.ref();
+    dbRef.push({
+      title: item.title,
+      year: year,
+      poster: `http://image.tmdb.org/t/p/w500${item.poster_path}`,
+      overview: item.overview,
+      movieID: item.id,
+      rating: 0,
+      watched: false,
+      inFB: false
+    });
+  }
+};
 
-
-
-
+module.exports = fire;
 
 
 

@@ -39,7 +39,8 @@ function requestMovieByID(movieID) {
 
 
 function loadMoviesToDOM(movieData) {
-    $("#movieDiv").append(movieTemplate(movieData));
+    console.log(movieData);
+    $(".row").append(movieTemplate(movieData));
 }
 
 

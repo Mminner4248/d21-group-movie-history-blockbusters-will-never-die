@@ -5,3 +5,5 @@ css/
 lib/node_modules
 javascripts/fb-keys.js
 javascripts/mdb-keys.js
+javascripts/teresa-playground.js
+playground.html

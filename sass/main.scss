@@ -1,18 +1,3 @@
-
-// **** Card Styles **** //
-
-img.activator {
-  height: 400px !important;
-  overflow: hidden !important;
-}
-
-div.card-content {
-  height: 100px !important;
-  padding: 16px !important;
-  padding-right: 0 !important;
-  padding-left: 24px !important;
-}
-
 body {
     display: flex;
     min-height: 100vh;
@@ -26,9 +11,9 @@ body {
   }
 
   //for sticky footer and nav bar
-  main {
-    flex: 1 0 auto;
-  }
+//   main {
+//     flex: 1 0 auto;
+//   }
 
 
 // **** Card Styles **** //
@@ -65,10 +50,9 @@ div.card-content {
   }
 //PRINT TO DOM HOLDER
 #mainSearchResults{
-    // min-height: 400px;
-    background: white;
-    width: 90% auto;
+    width: 100% auto;
 }
+
 
 ////USER VIEW SEARCH
 #userSearchBar{
@@ -88,10 +72,10 @@ div.card-content {
     font-weight: 900;
 }
 #userView{
-    display: flex;
+    // display: flex;
     margin-top:50px;
     color: black;
-    width: 80%;
+    width: 90%;
     min-height: 500px;
 }
 
@@ -100,15 +84,20 @@ div.card-content {
 }
 
 .range-field{
-    width: 80%;
-    z-index: 1000;
-    display:block;
-    margin:auto;
+    // width: 80%;
+    // z-index: 1000;
+    // display:block;
+    // margin:auto;
 }
 
 .btn.profile{
     margin-bottom: 10px;
     width: 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+.logoff{
+    background-color: red;
 }
 
 //USER VIEW PROFILE COLUMN

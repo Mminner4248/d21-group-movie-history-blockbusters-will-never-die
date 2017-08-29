@@ -46,6 +46,7 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
 
 $('#userSearchBar').on('keyup', function(e) {
   if (e.keyCode === 13) {
+    $("#untracked").fadeIn(2000).removeClass("is-hidden");
     firebase.getWatchList()
     .then((data) => {
       loadMoviesToDOM(data);
@@ -66,6 +67,8 @@ function requestMovieByID(movieID) {
 function loadMoviesToDOM(movieData) {
     console.log(movieData);
     $(".row").append(movieTemplate(movieData));
+    //for the userView: $("#userMovies").append(movieTemplate(movieData));
+    //for the searchView: $("#searchView").append(movieTemplate(movieData));
 }
 
 

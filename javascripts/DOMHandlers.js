@@ -27,7 +27,7 @@ var handler = {
         console.log("movie", movie);
         fire.addToFB(movie);
         $(e.target).parent().remove();
-        $(`#reveal${movieId}`).before(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" id="removeButton--${movieId}">remove</i></a>`);
+        $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" id="removeButton--${movieId}">remove</i></a>`);
         handler.removeFromFB();
       });
     });
@@ -62,8 +62,6 @@ var handler = {
 
   loadMoviesToDOM: function(movieData) {
     if (fire.getCurrentUser() !== undefined) {
-      $("#userMovies").html('');
-      $('#mainSearchResults').html('');
       $("#userMovies").append(userTemplate(movieData));
       $('.rateYo').each((index, item) => {
         $(`#${item.id}`).rateYo({
@@ -84,8 +82,6 @@ var handler = {
       handler.removeFromFB();
 
     } else {
-      $('#mainSearchResults').html('');
-      $("#userMovies").html('');
       $('#mainSearchResults').append(movieTemplate(movieData));
     }
     handler.loadCast();
@@ -129,7 +125,7 @@ var handler = {
           console.log("movie", movie);
           fire.addToFB(movie);
           $(`#addButton--${movieId}`).remove();
-          $(`#reveal${movieId}`).before(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" id="removeButton--${movieId}">remove</i></a>`);
+          $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" id="removeButton--${movieId}">remove</i></a>`);
           handler.removeFromFB();
         });
       } else {

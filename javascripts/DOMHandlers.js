@@ -27,7 +27,7 @@ var handler = {
         console.log("movie", movie);
         fire.addToFB(movie);
         $(e.target).parent().remove();
-        $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" id="removeButton--${movieId}">remove</i></a>`);
+        $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" onclick="Materialize.toast('Movie Removed!', 3000, 'red') id="removeButton--${movieId}">remove</i></a>`);
         handler.removeFromFB();
       });
     });
@@ -125,7 +125,7 @@ var handler = {
           console.log("movie", movie);
           fire.addToFB(movie);
           $(`#addButton--${movieId}`).remove();
-          $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" id="removeButton--${movieId}">remove</i></a>`);
+          $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" onclick="Materialize.toast('Movie Removed!', 3000, 'red') id="removeButton--${movieId}">remove</i></a>`);
           handler.removeFromFB();
         });
       } else {

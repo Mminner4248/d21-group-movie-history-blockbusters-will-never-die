@@ -8,14 +8,17 @@ let fire = require('./firebase');
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user){
-        currentUser = user.uid;
-        console.log("current user Logged in?", currentUser);
-        $("#searchView").hide();
-        $("#profileView").show();
-        fire.getWatchList()
-        .then((data) => {
-          handler.loadMoviesToDOM(data);
-        });
+      console.log("user", user);
+      $('#my-movies').html(user.displayName);
+      $('#userPic').attr('src', user.photoURL);
+      currentUser = user.uid;
+      $("#searchView").hide();
+      $("#profileView").show();
+      fire.getWatchList()
+      .then((data) => {
+        handler.loadMoviesToDOM(data);
+      });
+
     }else {
         currentUser = null;
         $("#mainSearchResults").html(" ");

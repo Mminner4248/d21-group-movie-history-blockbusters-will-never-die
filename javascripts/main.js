@@ -137,6 +137,7 @@ $('#userSearchBar').on('keyup', function(e) {
           });
         }
         handlers.loadMoviesToDOM(movieObj);
+        handlers.untracked();
         $("#userSearchBar").val(function() {
           if (this.value.length == 0) {
             return $(this).attr('placeholder');
@@ -148,20 +149,6 @@ $('#userSearchBar').on('keyup', function(e) {
     });
   }
 });
-
-function requestMovieByID(movieID) {
-  movieAPILoader.getMoviesWithCredits(movieID.id)
-      .then((movieDataWithCredits)=>{
-      // movieObjArray = [];
-      // movieObjArray.push(movieDataWithCredits);
-      // handlers.loadMoviesToDOM(movieObjArray);
-  });
-}
-
-
-
-
-
 
 
 //This is where we are starting the firebase logInGoogle

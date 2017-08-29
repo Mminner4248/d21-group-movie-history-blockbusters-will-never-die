@@ -120,7 +120,6 @@ $('#userSearchBar').on('keyup', function(e) {
           }
 
           if (movieIDArr.indexOf(mitem.id) !== -1) {
-            console.log("mitem", mitem);
              movieObj[mindex].inFB = true;
              let thisMovieIndex = movieIDArr.indexOf(mitem.id);
              movieObj[mindex].rating = movieRatingArr[thisMovieIndex];
@@ -155,7 +154,6 @@ function loadMoviesToDOM(movieData) {
     $("#userMovies").html('');
     $('#mainSearchResults').html('');
     $("#userMovies").append(userTemplate(movieData));
-    handlers.addToFB();
     $('.rateYo').each((index, item) => {
       $(`#${item.id}`).rateYo({
          fullStar: true,
@@ -169,6 +167,8 @@ function loadMoviesToDOM(movieData) {
                // handler.rateMovie(movieObj, rating);
          });
     });
+    handlers.addToFB();
+    handlers.removeFromFB();
 
   } else {
     $('#mainSearchResults').html('');

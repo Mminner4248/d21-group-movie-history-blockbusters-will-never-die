@@ -30,18 +30,18 @@ var fire = {
 
     }
   },
-  testPush: function(item) {
-    let year = item.release_date.slice(0, item.release_date.indexOf('-'));
+
+  addToFB: function(item) {
     let dbRef = fdr.ref();
     dbRef.push({
       title: item.title,
-      year: year,
-      poster: `http://image.tmdb.org/t/p/w500${item.poster_path}`,
+      year: item.year,
+      poster: item.poster,
       overview: item.overview,
-      movieID: item.id,
-      rating: 0,
-      watched: false,
-      inFB: false,
+      movieID: item.movieID,
+      rating: item.rating,
+      watched: item.watched,
+      inFB: item.inFB,
       uid: item.uid
     });
   },
@@ -52,9 +52,23 @@ var fire = {
       $.ajax({
         url: `https://moviehistorydb.firebaseio.com/.json?orderBy="uid"&equalTo="${userID}"`
       }).done((data) => {
-        console.log("dataAJAX", data);
         resolve(data);
       });
+    });
+  },
+
+  removeFromFB: function(id) {
+    fire.getWatchList()
+    .then((data) => {
+      let keys = Object.keys(data);
+      let correctUgly;
+      $(keys).each((index, item) => {
+        let eachMovie = data[item];
+        if (eachMovie.movieID === id) {
+          correctUgly = keys[index];
+        }
+      });
+      fdr.ref(`/${correctUgly}`).remove();
     });
   }
 };

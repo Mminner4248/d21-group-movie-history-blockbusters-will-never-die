@@ -43,5 +43,15 @@ MovieAPI.getCredits = (id) => {
   });
 };
 
+MovieAPI.getSingleMovie = (id) => {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: `https://api.themoviedb.org/3/movie/${id}?api_key=${MovieAPI.getMDBSettings().apiKey}&language=en-US`
+    }).done((data) => {
+      resolve(data);
+    });
+  });
+};
+
 
 module.exports = MovieAPI;

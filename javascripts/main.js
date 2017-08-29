@@ -28,38 +28,45 @@ user.logout();
 $("#searchBar").on('keyup', function(e){ //clicks or presses enter
     // gets value from search
     if (e.keyCode === 13) {
+      $('#mainSearchResults').html('');
+      $("#userMovies").html('');
       let movieSearch = document.getElementById("searchBar").value;
       let movieObject = {};
       $("#mainSearchResults").html(" ");
       movieAPILoader.getMovies(movieSearch)
         .then((movieData)=>{
-           let movies = movieData.results;
-           $(movies).each((index, item)=>{
-             let year = item.release_date.slice(0, item.release_date.indexOf('-'));
-             if (item.poster_path === null) {
-              movieObject[index] = {
+          if (movieData.results.length === 0) {
+            $('#mainSearchResults').append(`<h2 style="color:white;text-align:center">Your search returned no results.</h2>`);
+          } else {
+            let movies = movieData.results;
+            $(movies).each((index, item)=>{
+              let year = item.release_date.slice(0, item.release_date.indexOf('-'));
+              if (item.poster_path === null) {
+               movieObject[index] = {
+                 title: item.title,
+                 year: year,
+                 poster: 'images/noPosterPH.jpg',
+                 overview: item.overview,
+                 movieID: item.id,
+                 rating: 0,
+                 watched: false,
+                 inFB: false
+               };
+               } else {
+               movieObject[index] = {
                 title: item.title,
                 year: year,
-                poster: 'images/noPosterPH.jpg',
+                poster: `http://image.tmdb.org/t/p/w342${item.poster_path}`,
                 overview: item.overview,
                 movieID: item.id,
                 rating: 0,
                 watched: false,
                 inFB: false
               };
-              } else {
-              movieObject[index] = {
-               title: item.title,
-               year: year,
-               poster: `http://image.tmdb.org/t/p/w342${item.poster_path}`,
-               overview: item.overview,
-               movieID: item.id,
-               rating: 0,
-               watched: false,
-               inFB: false
-             };
-              }
-           });
+               }
+            });
+          }
+
           //  console.log("movieObject", movieObject);
           //  handlers.loadMoviesToDOM(movieObject);
           handlers.loadMoviesToDOM(movieObject);
@@ -74,6 +81,8 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
 
 $('#userSearchBar').on('keyup', function(e) {
   if (e.keyCode === 13) {
+    $('#mainSearchResults').html('');
+    $("#userMovies").html('');
     $("#untracked").removeClass("is-hidden");
     $(".range-field").addClass("is-hidden");
     var movieObj = {};
@@ -90,39 +99,43 @@ $('#userSearchBar').on('keyup', function(e) {
       let search = $('#userSearchBar').val();
       movieAPILoader.getMovies(search)
       .then((movieData) => {
-        let movies = movieData.results;
-        $(movies).each((mindex, mitem) => {
-          let year = mitem.release_date.slice(0, mitem.release_date.indexOf('-'));
-          if (mitem.poster_path === null) {
-              movieObj[mindex] = {
-                title: mitem.title,
-                year: year,
-                poster: 'images/noPosterPH.jpg',
-                overview: mitem.overview,
-                movieID: mitem.id,
-                rating: 0,
-                watched: false,
-                inFB: false
+        if (movieData.results.length === 0) {
+          $('#userMovies').append(`<h2 style="text-align:center">Your search returned no results.</h2>`);
+        } else {
+          let movies = movieData.results;
+          $(movies).each((mindex, mitem) => {
+            let year = mitem.release_date.slice(0, mitem.release_date.indexOf('-'));
+            if (mitem.poster_path === null) {
+                movieObj[mindex] = {
+                  title: mitem.title,
+                  year: year,
+                  poster: 'images/noPosterPH.jpg',
+                  overview: mitem.overview,
+                  movieID: mitem.id,
+                  rating: 0,
+                  watched: false,
+                  inFB: false
+                };
+            } else {
+            movieObj[mindex] = {
+              title: mitem.title,
+              year: year,
+              poster: `http://image.tmdb.org/t/p/w342${mitem.poster_path}`,
+              overview: mitem.overview,
+              movieID: mitem.id,
+              rating: 0,
+              watched: false,
+              inFB: false
               };
-          } else {
-          movieObj[mindex] = {
-            title: mitem.title,
-            year: year,
-            poster: `http://image.tmdb.org/t/p/w342${mitem.poster_path}`,
-            overview: mitem.overview,
-            movieID: mitem.id,
-            rating: 0,
-            watched: false,
-            inFB: false
-            };
-          }
+            }
 
-          if (movieIDArr.indexOf(mitem.id) !== -1) {
-             movieObj[mindex].inFB = true;
-             let thisMovieIndex = movieIDArr.indexOf(mitem.id);
-             movieObj[mindex].rating = movieRatingArr[thisMovieIndex];
-          }
-        });
+            if (movieIDArr.indexOf(mitem.id) !== -1) {
+               movieObj[mindex].inFB = true;
+               let thisMovieIndex = movieIDArr.indexOf(mitem.id);
+               movieObj[mindex].rating = movieRatingArr[thisMovieIndex];
+            }
+          });
+        }
         handlers.loadMoviesToDOM(movieObj);
         $("#userSearchBar").val(function() {
           if (this.value.length == 0) {

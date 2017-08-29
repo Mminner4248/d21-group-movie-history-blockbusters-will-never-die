@@ -62,8 +62,6 @@ var handler = {
 
   loadMoviesToDOM: function(movieData) {
     if (fire.getCurrentUser() !== undefined) {
-      $("#userMovies").html('');
-      $('#mainSearchResults').html('');
       $("#userMovies").append(userTemplate(movieData));
       $('.rateYo').each((index, item) => {
         $(`#${item.id}`).rateYo({
@@ -84,8 +82,6 @@ var handler = {
       handler.removeFromFB();
 
     } else {
-      $('#mainSearchResults').html('');
-      $("#userMovies").html('');
       $('#mainSearchResults').append(movieTemplate(movieData));
     }
     handler.loadCast();

@@ -3,6 +3,8 @@
 let firebase = require('../lib/node_modules/firebase');
 let provider = new firebase.auth.GoogleAuthProvider();
 let currentUser = null;
+let handler = require('./DOMHandlers');
+let fire = require('./firebase');
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user){
@@ -10,6 +12,10 @@ firebase.auth().onAuthStateChanged((user) => {
         console.log("current user Logged in?", currentUser);
         $("#searchView").hide();
         $("#profileView").show();
+        fire.getWatchList()
+        .then((data) => {
+          handler.loadMoviesToDOM(data);
+        });
     }else {
         currentUser = null;
         $("#mainSearchResults").html(" ");

@@ -70,6 +70,13 @@ var fire = {
       });
       fdr.ref(`/${correctUgly}`).remove();
     });
+  },
+
+  updateRating: function(uglyID, rating) {
+    let dbRef = fdr.ref(`/${uglyID}`);
+    dbRef.update({
+      rating: rating
+    });
   }
 };
 

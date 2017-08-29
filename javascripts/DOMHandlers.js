@@ -26,6 +26,9 @@ var handler = {
         };
         console.log("movie", movie);
         fire.addToFB(movie);
+        $(e.target).parent().remove();
+        $(`#reveal${movieId}`).before(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" id="removeButton--${movieId}">remove</i></a>`);
+        handler.removeFromFB();
       });
     });
   },
@@ -53,6 +56,7 @@ var handler = {
       let movieId = manipID.slice(manipID.indexOf('--')+2, manipID.length);
       movieId = Number(movieId);
       fire.removeFromFB(movieId);
+      $(`#card--${movieId}`).remove();
     });
   },
 
@@ -70,8 +74,10 @@ var handler = {
            spacing: "7px"
          })
           .on("rateyo.set", function (e, data) {
-                 let rating = data.rating * 2;
-                 // handler.rateMovie(movieObj, rating);
+             let starDiv = $(item).attr('id');
+             let movieID = starDiv.slice(6, starDiv.length);
+             let rating = data.rating * 2;
+             handler.rateMovie(movieID, rating);
            });
       });
       handler.addToFB();
@@ -83,7 +89,62 @@ var handler = {
       $('#mainSearchResults').append(movieTemplate(movieData));
     }
     handler.loadCast();
+  },
+
+  rateMovie: function(movieID, rating) {
+    fire.getWatchList()
+    .then((data) => {
+      console.log("rateMovieData", data);
+      let movieId = Number(movieID);
+      console.log("movidId", movieId);
+      let keys = Object.keys(data);
+      let uglyID;
+      let movieIDsArray = [];
+      $(keys).each((index, item) => {
+        let thisMovie = data[item];
+        console.log("thisMovie.outside.movieID", thisMovie.movieID);
+        if(thisMovie.movieID === movieId) {
+          console.log("indside", thisMovie.movieID);
+          uglyID = keys[index];
+          movieIDsArray.push(thisMovie.movieID);
+        }
+      });
+      console.log("uglyID", uglyID);
+      console.log("idarray", movieIDsArray);
+      if (movieIDsArray.indexOf(movieId) === -1) {
+        movieDB.getSingleMovie(movieId)
+        .then((data) => {
+          let year = data.release_date.slice(0, data.release_date.indexOf('-'));
+          let movie = {
+            title: data.title,
+            year: year,
+            poster: `http://image.tmdb.org/t/p/w342${data.poster_path}`,
+            overview: data.overview,
+            movieID: data.id,
+            rating: rating,
+            watched: true,
+            inFB: true,
+            uid: fire.getCurrentUser()
+          };
+          console.log("movie", movie);
+          fire.addToFB(movie);
+          $(`#addButton--${movieId}`).remove();
+          $(`#reveal${movieId}`).before(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" id="removeButton--${movieId}">remove</i></a>`);
+          handler.removeFromFB();
+        });
+      } else {
+          fire.updateRating(uglyID, rating);
+      }
+    });
+
+
+  },
+
+  updateRating: function() {
+
   }
+
+
 };
 
 module.exports = handler;

@@ -1,8 +1,6 @@
 'use strict';
 
 let movieAPILoader = require('./api.js'),
-    movieTemplate = require("../templates/movie-card.hbs"),
-    userTemplate = require('../templates/userCards.hbs'),
     handlebarHelper = require("./hbsHelpers.js"),
     handlers = require("./DOMHandlers.js"),
     firebase= require("./firebase.js"),
@@ -48,7 +46,7 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
                 rating: 0,
                 watched: false,
                 inFB: false
-              }; 
+              };
               } else {
               movieObject[index] = {
                title: item.title,
@@ -63,8 +61,8 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
               }
            });
           //  console.log("movieObject", movieObject);
-          //  loadMoviesToDOM(movieObject);
-          loadMoviesToDOM(movieObject);
+          //  handlers.loadMoviesToDOM(movieObject);
+          handlers.loadMoviesToDOM(movieObject);
           $("#searchBar").val(function() {
             if (this.value.length == 0) {
               return $(this).attr('placeholder');
@@ -125,14 +123,14 @@ $('#userSearchBar').on('keyup', function(e) {
              movieObj[mindex].rating = movieRatingArr[thisMovieIndex];
           }
         });
-        loadMoviesToDOM(movieObj);
+        handlers.loadMoviesToDOM(movieObj);
         $("#userSearchBar").val(function() {
           if (this.value.length == 0) {
             return $(this).attr('placeholder');
           }
         });
       });
-      // loadMoviesToDOM(data);
+      // handlers.loadMoviesToDOM(data);
       // $("#userMovies").append(movieTemplate(data));
     });
   }
@@ -143,40 +141,11 @@ function requestMovieByID(movieID) {
       .then((movieDataWithCredits)=>{
       // movieObjArray = [];
       // movieObjArray.push(movieDataWithCredits);
-      // loadMoviesToDOM(movieObjArray);
+      // handlers.loadMoviesToDOM(movieObjArray);
   });
 }
 
 
-function loadMoviesToDOM(movieData) {
-  // this needs to be changed once auth works correctly
-  if (firebase.getCurrentUser() !== undefined) {
-    $("#userMovies").html('');
-    $('#mainSearchResults').html('');
-    $("#userMovies").append(userTemplate(movieData));
-    $('.rateYo').each((index, item) => {
-      $(`#${item.id}`).rateYo({
-         fullStar: true,
-         numStars: 10,
-         rating: ($(item).attr('rating'))/2,
-         starWidth: "20px",
-         spacing: "7px"
-       })
-        .on("rateyo.set", function (e, data) {
-               let rating = data.rating * 2;
-               // handler.rateMovie(movieObj, rating);
-         });
-    });
-    handlers.addToFB();
-    handlers.removeFromFB();
-
-  } else {
-    $('#mainSearchResults').html('');
-    $("#userMovies").html('');
-    $('#mainSearchResults').append(movieTemplate(movieData));
-  }
-  handlers.loadCast();
-}
 
 
 

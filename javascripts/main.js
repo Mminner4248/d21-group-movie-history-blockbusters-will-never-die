@@ -38,7 +38,19 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
            let movies = movieData.results;
            $(movies).each((index, item)=>{
              let year = item.release_date.slice(0, item.release_date.indexOf('-'));
-             movieObject[index] = {
+             if (item.poster_path === null) {
+              movieObject[index] = {
+                title: item.title,
+                year: year,
+                poster: 'images/noPosterPH.jpg',
+                overview: item.overview,
+                movieID: item.id,
+                rating: 0,
+                watched: false,
+                inFB: false
+              }; 
+              } else {
+              movieObject[index] = {
                title: item.title,
                year: year,
                poster: `http://image.tmdb.org/t/p/w342${item.poster_path}`,
@@ -48,6 +60,7 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
                watched: false,
                inFB: false
              };
+              }
            });
           //  console.log("movieObject", movieObject);
           //  loadMoviesToDOM(movieObject);
@@ -82,6 +95,18 @@ $('#userSearchBar').on('keyup', function(e) {
         let movies = movieData.results;
         $(movies).each((mindex, mitem) => {
           let year = mitem.release_date.slice(0, mitem.release_date.indexOf('-'));
+          if (mitem.poster_path === null) {
+              movieObj[mindex] = {
+                title: mitem.title,
+                year: year,
+                poster: 'images/noPosterPH.jpg',
+                overview: mitem.overview,
+                movieID: mitem.id,
+                rating: 0,
+                watched: false,
+                inFB: false
+              };
+          } else {
           movieObj[mindex] = {
             title: mitem.title,
             year: year,
@@ -91,7 +116,8 @@ $('#userSearchBar').on('keyup', function(e) {
             rating: 0,
             watched: false,
             inFB: false
-          };
+            };
+          }
 
           if (movieIDArr.indexOf(mitem.id) !== -1) {
             console.log("mitem", mitem);

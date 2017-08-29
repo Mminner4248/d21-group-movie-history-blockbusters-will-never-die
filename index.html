@@ -58,17 +58,19 @@
       <!-- PROFILE COLUMN BEGIN-->
         <div class="row">
           <div class="col s3 gray">
+              <div id="freeze">
                   <img src="images/atomix_user31.png">
                   <h4 id="my-movies" class="my-movies">User Name</h4>
                   <button class="waves-effect waves-light btn profile" id="allMovies">ALL MOVIES</button>
                   <button class="waves-effect waves-light btn profile" id="unwatched">UNWATCHED</button>
                   <button class="waves-effect waves-light btn profile" id="watched">WATCHED</button>
                   <button class="waves-effect waves-light btn profile logoff" id="logout"><span>LOG OUT </span><i class="material-icons">exit_to_app</i></button>
-          </div>
+              </div>
+            </div>
       <!-- PROFILE COLUMN END-->
 
       <!-- MOVIES COLUMN BEGIN-->
-          <div class="col s9 white">
+          <div class="col s9 mainContent">
             <!-- USER SEARCH BAR -->
               <div class="row center">
                   <input type="text" id="userSearchBar" placeholder="Search for Movies to Add to Your List!">
@@ -80,7 +82,7 @@
               <div id="rateYo"></div>
               <div class="range-field is-hidden">
                 <h6>Filter Based On Your Rating</h6>
-              <input type="range" id="ratingSlider" min="0" max="10"/>
+                  <input type="range" id="ratingSlider" value="0" min="0" max="10"/>
               </div>
             
            

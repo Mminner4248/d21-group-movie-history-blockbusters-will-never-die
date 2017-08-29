@@ -37,33 +37,35 @@
     <div id="searchView" class="container">
         <div class="section no-pad-bot" id="index-banner">
         <!-- SEARCH BEGINNING-->
+          <div class="container">
             <div id="searchViewSearchBar" class="row center">
               <input type="text" id="searchBar" placeholder="Search for Movies!">
             </div>
             <div id="loginButtonHome" class="row center">
               <a href="#" id="auth-btn" class="btn-large waves-effect waves-light orange">Login to Save Your Favs!</a>
+            </div>
+          </div>
         </div>
         <div id="mainSearchResults" class="row">
 
         </div>
-    </div>
     </div>
 
 
 
     <!-- USER VIEW -->
     <!-- for some reason this won't hide unless I create the new div "profileView" -->
-    <div id="profileView" class="is-hidden">
+    <div id="profileView" class="">
     <div id="userView" class="container">
       <!-- PROFILE COLUMN BEGIN-->
         <div class="row">
           <div class="col s3 gray">
                   <img src="images/atomix_user31.png">
                   <h4>User Name</h4>
-                  <button class="waves-effect waves-light btn profile" id="allMovies">ALL MOVIES</button>
-                  <button class="waves-effect waves-light btn profile" id="unwatched">UNWATCHED</button>
-                  <button class="waves-effect waves-light btn profile" id="watched">WATCHED</button>
-                  <button class="waves-effect waves-light btn profile logoff" id="logout"><span>LOG OUT </span><i class="material-icons">exit_to_app</i></button>
+                  <a class="waves-effect waves-light btn profile" id="allMovies">ALL MOVIES</a>
+                  <a class="waves-effect waves-light btn profile" id="unwatched">UNWATCHED</a>
+                  <a class="waves-effect waves-light btn profile" id="watched">WATCHED</a>
+                  <a class="waves-effect waves-light btn profile logoff" id="logout"><span>LOG OUT </span><i class="material-icons">exit_to_app</i></a>
           </div>
       <!-- PROFILE COLUMN END-->
 
@@ -74,7 +76,7 @@
                   <input type="text" id="userSearchBar" placeholder="Search for Movies to Add to Your List!">
                 </div>
             <!-- BREADCRUMBS & TOGGLE BUTTONS-->
-            <div id="breadcrumbs"><a>My Movies </a><span class="appendBread"></span></div>
+            <p id="breadcrumbs">BREADCRUMBS Placeholder ></p>
             <div class="toggle-btns">
               <a class="waves-effect waves-light btn is-hidden" id="untracked">SHOW UNTRACKED</a>
               <div class="range-field is-hidden">
@@ -85,7 +87,7 @@
 
 
             <!-- MOVIES PRINT TO DOM HERE -->
-            <div id="userMovies" class="row">
+            <div id="userMovies">
               <!-- <h2>MOVIES PRINT TO DOM HERE</h2> -->
 
             </div>

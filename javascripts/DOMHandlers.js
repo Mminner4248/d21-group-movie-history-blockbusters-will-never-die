@@ -2,7 +2,6 @@
 
 var fire = require('./firebase');
 var movieDB = require('./api');
-var $ = require('jquery');
 
 var handler = {
   addToFB: function() {

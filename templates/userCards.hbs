@@ -1,4 +1,5 @@
 {{#each this}}
+{{log this}}
 <div class="col xl4 l6 m6 s12 movieCard" id="card--{{movieID}}">
 	<div class="card sticky-action" id="cardSticky{{movieID}}">
 		<div class="card-image waves-effect waves-block waves-light" id="cardImage{{movieID}}">
@@ -6,23 +7,10 @@
 		</div>
 		<div class="card-content">
 		<span class='card-title activator grey-text text-darken-4 icon{{movieID}} col s10 truncate'>{{title}}</span>
-		<!-- Modal Trigger -->
-		  <a class="waves-effect waves-light btn modal-trigger modalBtn{{@index}}" href="#modal{{@index}}">Modal</a>
 
       {{alreadyFB this}}
 
 
-		  <!-- Modal Structure -->
-		  <div id="modal{{@index}}" class="modal">
-		    <div class="modal-content">
-		      <h4>Modal Header</h4>
-		      <p>A bunch of text</p>
-		    </div>
-		    <div class="modal-footer">
-		      <a href="!#" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-		    </div>
-		  </div>
-		</div>
 		<div class="card-reveal" id="reveal{{movieID}}">
 		  <span class="card-title grey-text text-darken-4">Overview<i class="material-icons right">close</i></span>
 		<span>({{year}})</span>
@@ -30,8 +18,9 @@
 		<span class="card-title grey-text text-darken-4">Cast</span>
 		<p id="castReveal{{movieID}}"></p>
 		</div>
-		<div id="rateYo{{movieID}}" class="rateYo">{{stars this}}</div>
+		<div id="rateYo{{movieID}}" class="rateYo" rating="{{rating}}"></div>
 	</div>
 </div>
-{{modal this}}
+</div>
+{{!-- {{modal this}} --}}
 {{/each}}

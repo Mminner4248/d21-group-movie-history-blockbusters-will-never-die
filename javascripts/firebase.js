@@ -24,10 +24,10 @@ movies.getMovies('the godfather')
 let fdr = firebase.database();
 var fire = {
   getCurrentUser: function(){
-    if (firebase.auth().currentUser === null) {
-      return 111;
-    } else {
+    if (firebase.auth().currentUser !== null) {
       return firebase.auth().currentUser.uid;
+    } else {
+
     }
   },
   testPush: function(item) {

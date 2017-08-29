@@ -2,9 +2,10 @@
 console.log("user toggles, yo!");
 
 //this code makes the buttons in the user view work
-let movieTemplate = require("../templates/movie-card.hbs"),
+let userTemplate = require("../templates/userCards.hbs"),
     handlebarHelper = require("./hbsHelpers.js"),
-    firebase= require("./firebase.js");
+    firebase= require("./firebase.js"),
+    userMovies = require("./DOMHandlers.js");
 
 let toggleObject = {};
 
@@ -27,7 +28,8 @@ $("#unwatched").on("click", function(){
         });
     })
     .then((data) => {
-        $("#userMovies").append(movieTemplate(toggleObject));
+        // $("#userMovies").append(userTemplate(toggleObject));
+        userMovies.loadMoviesToDOM(toggleObject);
     });
 });
 
@@ -50,7 +52,8 @@ $("#watched").click(function(){
         });
     })
     .then((data) => {
-        $("#userMovies").append(movieTemplate(toggleObject));
+        // $("#userMovies").append(userTemplate(toggleObject));
+        userMovies.loadMoviesToDOM(toggleObject);
     });
 });
 
@@ -62,7 +65,8 @@ $("#allMovies").click(function(){
     $(".appendBread").html(" ");
     firebase.getWatchList()
     .then((data) => {
-        $("#userMovies").append(movieTemplate(data));
+        // $("#userMovies").append(userTemplate(toggleObject));
+        userMovies.loadMoviesToDOM(data);
     });
 });
 
@@ -73,7 +77,8 @@ $("#breadcrumbs").click(function(){
     $(".appendBread").html(" ");
     firebase.getWatchList()
     .then((data) => {
-        $("#userMovies").append(movieTemplate(data));
+        // $("#userMovies").append(userTemplate(toggleObject));
+        userMovies.loadMoviesToDOM(data);
     });
 });
 
@@ -93,6 +98,7 @@ $("#ratingSlider").change(function(){
         });
     })
     .then((data) => {
-        $("#userMovies").append(movieTemplate(toggleObject));
+        // $("#userMovies").append(userTemplate(toggleObject));
+        userMovies.loadMoviesToDOM(toggleObject);
     });
 });

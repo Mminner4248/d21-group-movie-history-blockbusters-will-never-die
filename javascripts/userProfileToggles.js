@@ -13,6 +13,8 @@ let toggleObject = {};
 //display items from watchlist to the DOM
 $("#unwatched").on("click", function(){
     $(".range-field").addClass("is-hidden");
+    $(".appendBread").html(" ");
+    $(".appendBread").append("> Unwatched Movies");
     console.log("Display items from watchlist to the DOM");
     $("#userMovies").html(" ");
     toggleObject = {};
@@ -33,6 +35,8 @@ $("#unwatched").on("click", function(){
 //display items from watchED to the DOM
 $("#watched").click(function(){
     $(".range-field").removeClass("is-hidden");
+    $(".appendBread").html(" ");
+    $(".appendBread").append("> Watched Movies");
     console.log("Display items from watchED to the DOM");
     $("#userMovies").html(" ");
     toggleObject = {};
@@ -54,6 +58,16 @@ $("#watched").click(function(){
 $("#allMovies").click(function(){
     console.log("Display ALL MOVIES");
     $("#userMovies").html(" ");
+    $(".appendBread").html(" ");
+    firebase.getWatchList()
+    .then((data) => {
+        $("#userMovies").append(movieTemplate(data));
+    });
+});
+
+$("#breadcrumbs").click(function(){
+    $("#userMovies").html(" ");
+    $(".appendBread").html(" ");
     firebase.getWatchList()
     .then((data) => {
         $("#userMovies").append(movieTemplate(data));

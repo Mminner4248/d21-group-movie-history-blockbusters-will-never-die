@@ -24,19 +24,19 @@ Handlebars.registerHelper('alreadyFB', (movieObj) => {
   }
 });
 
-Handlebars.registerHelper('stars', (movieObj) => {
-  $(`#rateYo${movieObj.movieID}`).rateYo({
-    fullStar: true,
-    numStars: 10,
-    rating: movieObj.rating/2,
-    starWidth: "20px",
-    spacing: "7px"
-  })
-   .on("rateyo.set", function (e, data) {
-          let rating = data.rating * 2;
-          // handler.rateMovie(movieObj, rating);
-    });
-});
+// Handlebars.registerHelper('stars', (movieObj) => {
+//   $(`#rateYo${movieObj.movieID}`).rateYo({
+//     fullStar: true,
+//     numStars: 10,
+//     rating: movieObj.rating/2,
+//     starWidth: "20px",
+//     spacing: "7px"
+//   })
+//    .on("rateyo.set", function (e, data) {
+//           let rating = data.rating * 2;
+//           // handler.rateMovie(movieObj, rating);
+//     });
+// });
 
 Handlebars.registerHelper('modal', (movieObj) => {
   $('.modal').modal();

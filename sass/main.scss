@@ -1,3 +1,20 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    // background-image: url("../images/collage-copy.jpg");
+    background: url(../images/collage-copy.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  //for sticky footer and nav bar
+//   main {
+//     flex: 1 0 auto;
+//   }
+
 
 // **** Card Styles **** //
 
@@ -11,50 +28,33 @@ div.card-content {
   padding: 16px !important;
   padding-right: 0 !important;
   padding-left: 24px !important;
+
 }
-html {
-    background: url(../images/collage-copy.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
 
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    // background-image: url("../images/collage-copy.jpg");
-    background: url(../images/collage-copy.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
+////SEARCH VIEW
 #searchView{
     margin-top: 70px;
+    overflow: scroll;
 }
 #searchBar{
     background-color: rgba(255,255,255, .8);
     padding: 40px 0;
     text-align: center;
     font-size: 3em;
+    border-radius: 5px;
+    width: 100%;
   }
 #searchBar::placeholder {
     color: gray;
     text-align: center;
   }
-
+//PRINT TO DOM HOLDER
 #mainSearchResults{
-    // min-height: 400px;
-    background: white;
-    width: 90% auto;
+    width: 100% auto;
 }
 
+
+////USER VIEW SEARCH
 #userSearchBar{
     width: 90%;
     background-color: rgba(255,255,255, .8);
@@ -67,22 +67,47 @@ body {
     color: gray;
     text-align: center;
   }
-
+.breadcrumbs{
+    font-size: .5em;
+    font-weight: 900;
+}
 #userView{
+    // display: flex;
     margin-top:50px;
-    background-color: white;
     color: black;
-    width: 80%;
+    width: 90%;
     min-height: 500px;
 }
-.container{
 
+.toggle-btns{
+    margin-bottom: 20px;
 }
 
-.col.s3.gray{
-    background: gray;
-    min-height: 500px;
+.range-field{
+    // width: 80%;
+    // z-index: 1000;
+    // display:block;
+    // margin:auto;
+}
+
+.btn.profile{
+    margin-bottom: 10px;
+    width: 100%;
+    vertical-align: middle;
     text-align: center;
+}
+.logoff{
+    background-color: red;
+}
+
+//USER VIEW PROFILE COLUMN
+.col.s3.gray{
+    background-color: rgba(255,140,0,.8);
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+    padding-bottom: 150px;
 }
 
 .col.s3.gray img{
@@ -96,10 +121,22 @@ body {
     font-size: 2em;
 }
 
+//USER VIEW MOVIE COLUMN
+.col.s9.white{
+    background: white;
+    overflow: scroll;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 100%;
+}
+
 .page-footer{
     background-color: gray;
 }
 
 .is-hidden{
-    visibility: hidden;
+    display:none;
 }
+// .is-visible{
+//     visibility: visible;
+// }

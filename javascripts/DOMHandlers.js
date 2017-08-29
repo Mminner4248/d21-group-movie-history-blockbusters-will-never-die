@@ -26,16 +26,16 @@ var handler = {
         };
         fire.addToFB(movie);
         $(e.target).parent().remove();
-        $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" onclick="Materialize.toast('Movie Removed!', 3000, 'red') id="removeButton--${movieId}">remove</i></a>`);
+        $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" onclick="Materialize.toast('Movie Removed!', 3000, 'red');" id="removeButton--${movieId}">remove</i></a>`);
         handler.removeFromFB();
       });
     });
   },
 
   loadCast: function() {
-    $('img.activator').on('click', function(e) {
+    $('.activator').on('click', function(e) {
       let manipID = $(e.target).parent().attr('id');
-      let thisMovieID = manipID.slice(9, manipID.length);
+      let thisMovieID = manipID.slice(manipID.indexOf('--')+2, manipID.length);
       movieDB.getCredits(thisMovieID)
       .then((data) => {
         let id = data.id;
@@ -51,6 +51,8 @@ var handler = {
 
   removeFromFB: function() {
     $('.removeButton').on('click', function(e) {
+      console.log("target", e.target);
+      console.log("targetID", $(e.target).attr('id'));
       let manipID = $(e.target).attr('id');
       let movieId = manipID.slice(manipID.indexOf('--')+2, manipID.length);
       movieId = Number(movieId);
@@ -118,7 +120,7 @@ var handler = {
           };
           fire.addToFB(movie);
           $(`#addButton--${movieId}`).remove();
-          $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" onclick="Materialize.toast('Movie Removed!', 3000, 'red') id="removeButton--${movieId}">remove</i></a>`);
+          $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" onclick="Materialize.toast('Movie Removed!', 3000, 'red');" id="removeButton--${movieId}">remove</i></a>`);
           handler.removeFromFB();
         });
       } else {

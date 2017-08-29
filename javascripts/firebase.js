@@ -75,7 +75,8 @@ var fire = {
   updateRating: function(uglyID, rating) {
     let dbRef = fdr.ref(`/${uglyID}`);
     dbRef.update({
-      rating: rating
+      rating: rating,
+      watched: true
     });
   }
 };

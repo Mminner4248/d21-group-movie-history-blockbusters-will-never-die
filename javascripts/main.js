@@ -85,6 +85,7 @@ $('#userSearchBar').on('keyup', function(e) {
     $("#userMovies").html('');
     $("#untracked").removeClass("is-hidden");
     $(".range-field").addClass("is-hidden");
+    $(".appendBread").html("> Search Results");
     var movieObj = {};
     $("#untracked").fadeIn(2000).removeClass("is-hidden");
     firebase.getWatchList()

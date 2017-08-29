@@ -94,6 +94,8 @@ $("#ratingSlider").change(function(){
                 //input is a string so no triple ===
                 if(starRating == data[item].rating){
                 toggleObject[index] = data[item];
+            }else if (starRating == 0){
+                toggleObject[index] = data[item];
             }
         });
     })

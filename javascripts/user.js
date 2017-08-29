@@ -34,7 +34,9 @@ function logInGoogle() {
 }
 
 function logout(){
-    return firebase.auth().signOut();
+  $('#userMovies').html('');
+  $('#mainSearchResults').html('');
+  return firebase.auth().signOut();
 }
 function getUser(){
     return currentUser;

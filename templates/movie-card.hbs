@@ -8,15 +8,17 @@
         <span class='card-title activator grey-text text-darken-4 icon{{movieID}} col s10 truncate'>{{title}}</span>
         </div>
 
-        <div class="card-reveal" id="reveal{{movieID}}">
-          <span class="card-title grey-text text-darken-4">Overview<i class="material-icons right">close</i></span>
-        <span>({{year}})</span>
-          <p>{{overview}}</p>
-        <span class="card-title grey-text text-darken-4">Cast</span>
-        <p id="castReveal{{movieID}}"></p>
-        </div>
-        <div id="rateYo{{@index}}" class="rateYo"></div>
-    </div>
+
+		<div class="card-reveal" id="reveal{{movieID}}">
+		  <span class="card-title grey-text text-darken-4">Overview<i class="material-icons right">close</i></span>
+		<span>({{year}})</span>
+		  <p>{{overview}}</p>
+		<span class="card-title grey-text text-darken-4">Cast</span>
+		<p id="castReveal{{movieID}}"></p>
+		</div>
+		<div id="rateYo{{@index}}" class="rateYo" onclick="Materialize.toast('Rated!', 3000, 'yellow accent-4')"></div>
+	</div>
+
 </div>
 
 {{/each}}

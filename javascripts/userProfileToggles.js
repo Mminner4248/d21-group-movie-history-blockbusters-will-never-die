@@ -56,7 +56,7 @@ $("#watched").click(function(){
 
 //display ALL MOVIES IN USER FB to the DOM
 $("#allMovies").click(function(){
-    console.log("Display ALL MOVIES");
+    $(".range-field").addClass("is-hidden");
     $("#userMovies").html(" ");
     $(".appendBread").html(" ");
     firebase.getWatchList()
@@ -66,6 +66,7 @@ $("#allMovies").click(function(){
 });
 
 $("#breadcrumbs").click(function(){
+    $(".range-field").addClass("is-hidden");
     $("#userMovies").html(" ");
     $(".appendBread").html(" ");
     firebase.getWatchList()

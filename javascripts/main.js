@@ -4,9 +4,10 @@ let movieAPILoader = require('./api.js'),
     $ = require('jquery'),
     movieTemplate = require("../templates/movie-card.hbs"),
     handlebarHelper = require("./hbsHelpers.js"),
-    firebase = require("./firebase.js"),
-    handlers = require('./DOMHandlers'),
-    user = require("./user.js");
+    handlers = require("./DOMHandlers.js"),
+    firebase= require("./firebase.js"),
+    user = require("./user.js"),
+    toggleKeys = require("./userProfileToggles.js");
 
 var movieIDsArray = [];
 var movieObjArray = [];
@@ -47,6 +48,7 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
 $('#userSearchBar').on('keyup', function(e) {
   if (e.keyCode === 13) {
     var movieObj = {};
+    $("#untracked").fadeIn(2000).removeClass("is-hidden");
     firebase.getWatchList()
     .then((data) => {
       let movieIDArr = [];

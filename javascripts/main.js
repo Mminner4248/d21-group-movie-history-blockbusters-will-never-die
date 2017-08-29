@@ -1,7 +1,6 @@
 'use strict';
 
 let movieAPILoader = require('./api.js'),
-    $ = require('jquery'),
     movieTemplate = require("../templates/movie-card.hbs"),
     handlebarHelper = require("./hbsHelpers.js"),
     firebase= require("./firebase.js"),
@@ -52,12 +51,18 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
 
 $('#userSearchBar').on('keyup', function(e) {
   if (e.keyCode === 13) {
-    $("#untracked").fadeIn(2000).removeClass("is-hidden");
+    $("#untracked").removeClass("is-hidden");
+    $(".range-field").addClass("is-hidden");
     firebase.getWatchList()
     // .then((data) => {
     //   loadMoviesToDOM(data);
     .then((data) => {
       $("#userMovies").append(movieTemplate(data));
+      $("#userSearchBar").val(function() {
+        if (this.value.length == 0) {
+          return $(this).attr('placeholder');
+        }
+      });
     });
   }
 });

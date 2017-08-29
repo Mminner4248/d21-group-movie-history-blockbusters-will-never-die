@@ -63,6 +63,8 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
 
 $('#userSearchBar').on('keyup', function(e) {
   if (e.keyCode === 13) {
+    $("#untracked").removeClass("is-hidden");
+    $(".range-field").addClass("is-hidden");
     var movieObj = {};
     $("#untracked").fadeIn(2000).removeClass("is-hidden");
     firebase.getWatchList()

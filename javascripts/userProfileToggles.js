@@ -1,10 +1,8 @@
 "use strict";
 console.log("user toggles, yo!");
 
-
 //this code makes the buttons in the user view work
-let $ = require('jquery'),
-    movieTemplate = require("../templates/movie-card.hbs"),
+let movieTemplate = require("../templates/movie-card.hbs"),
     handlebarHelper = require("./hbsHelpers.js"),
     firebase= require("./firebase.js");
 
@@ -13,6 +11,7 @@ let toggleObject = {};
 //display items from watchlist to the DOM
 $("#unwatched").on("click", function(){
     $(".range-field").addClass("is-hidden");
+    $("#untracked").addClass("is-hidden");
     $(".appendBread").html(" ");
     $(".appendBread").append("> Unwatched Movies");
     console.log("Display items from watchlist to the DOM");
@@ -35,6 +34,7 @@ $("#unwatched").on("click", function(){
 //display items from watchED to the DOM
 $("#watched").click(function(){
     $(".range-field").removeClass("is-hidden");
+    $("#untracked").addClass("is-hidden");
     $(".appendBread").html(" ");
     $(".appendBread").append("> Watched Movies");
     console.log("Display items from watchED to the DOM");
@@ -57,6 +57,7 @@ $("#watched").click(function(){
 //display ALL MOVIES IN USER FB to the DOM
 $("#allMovies").click(function(){
     $(".range-field").addClass("is-hidden");
+    $("#untracked").addClass("is-hidden");
     $("#userMovies").html(" ");
     $(".appendBread").html(" ");
     firebase.getWatchList()
@@ -67,6 +68,7 @@ $("#allMovies").click(function(){
 
 $("#breadcrumbs").click(function(){
     $(".range-field").addClass("is-hidden");
+    $("#untracked").addClass("is-hidden");
     $("#userMovies").html(" ");
     $(".appendBread").html(" ");
     firebase.getWatchList()
@@ -77,6 +79,7 @@ $("#breadcrumbs").click(function(){
 
 $("#ratingSlider").change(function(){
     $("#userMovies").html(" ");
+    $("#untracked").addClass("is-hidden");
     toggleObject = {};
     var starRating = $("#ratingSlider").val();
     firebase.getWatchList()

@@ -1,5 +1,5 @@
 "use strict";
-let $ = require('jquery');
+
 let firebase = require('../lib/node_modules/firebase');
 let provider = new firebase.auth.GoogleAuthProvider();
 let currentUser = null;

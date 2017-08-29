@@ -49,10 +49,10 @@ var fire = {
   getWatchList: function() {
     return new Promise((resolve, reject) => {
       let userID = fire.getCurrentUser();
-      console.log("userID", userID);
       $.ajax({
         url: `https://moviehistorydb.firebaseio.com/.json?orderBy="uid"&equalTo="${userID}"`
       }).done((data) => {
+        console.log("dataAJAX", data);
         resolve(data);
       });
     });

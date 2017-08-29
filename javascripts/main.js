@@ -4,7 +4,8 @@ let movieAPILoader = require('./api.js'),
     $ = require('jquery'),
     movieTemplate = require("../templates/movie-card.hbs"),
     handlebarHelper = require("./hbsHelpers.js"),
-    firebase= require("./firebase.js"),
+    firebase = require("./firebase.js"),
+    handlers = require('./DOMHandlers'),
     user = require("./user.js");
 
 var movieIDsArray = [];
@@ -45,9 +46,45 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
 
 $('#userSearchBar').on('keyup', function(e) {
   if (e.keyCode === 13) {
+    var movieObj = {};
     firebase.getWatchList()
     .then((data) => {
-      loadMoviesToDOM(data);
+      let movieIDArr = [];
+      let movieRatingArr = [];
+      let movieKeys = Object.keys(data);
+      $(movieKeys).each((findex, fitem) => {
+        movieIDArr.push(data[fitem].movieID);
+        movieRatingArr.push(data[fitem].rating);
+      });
+      console.log("movieIDArr", movieIDArr);
+      console.log("movieRatingArr", movieRatingArr);
+      let search = $('#userSearchBar').val();
+      movieAPILoader.getMovies(search)
+      .then((movieData) => {
+        let movies = movieData.results;
+        $(movies).each((mindex, mitem) => {
+          console.log('poster_path', mitem.poster_path);
+          movieObj[mindex] = {
+            title: mitem.title,
+            year: mitem.release_date,
+            poster: `http://image.tmdb.org/t/p/w342${mitem.poster_path}`,
+            overview: mitem.overview,
+            movieID: mitem.id,
+            rating: 0,
+            watched: false,
+            inFB: false
+          };
+
+          if (movieIDArr.indexOf(mitem.id) !== -1) {
+            console.log("mitem", mitem);
+             movieObj[mindex].inFB = true;
+             let thisMovieIndex = movieIDArr.indexOf(mitem.id);
+             movieObj[mindex].rating = movieRatingArr[thisMovieIndex];
+          }
+        });
+        loadMoviesToDOM(movieObj);
+      });
+      // loadMoviesToDOM(data);
     });
   }
 });
@@ -63,8 +100,8 @@ function requestMovieByID(movieID) {
 
 
 function loadMoviesToDOM(movieData) {
-    console.log(movieData);
-    $(".row").append(movieTemplate(movieData));
+    $("#userMovies").append(movieTemplate(movieData));
+    handlers.addToFB();
 }
 
 

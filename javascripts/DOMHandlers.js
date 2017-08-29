@@ -24,7 +24,6 @@ var handler = {
           inFB: true,
           uid: fire.getCurrentUser()
         };
-        console.log("movie", movie);
         fire.addToFB(movie);
         $(e.target).parent().remove();
         $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" onclick="Materialize.toast('Movie Removed!', 3000, 'red') id="removeButton--${movieId}">remove</i></a>`);
@@ -90,23 +89,18 @@ var handler = {
   rateMovie: function(movieID, rating) {
     fire.getWatchList()
     .then((data) => {
-      console.log("rateMovieData", data);
       let movieId = Number(movieID);
-      console.log("movidId", movieId);
       let keys = Object.keys(data);
       let uglyID;
       let movieIDsArray = [];
       $(keys).each((index, item) => {
         let thisMovie = data[item];
-        console.log("thisMovie.outside.movieID", thisMovie.movieID);
         if(thisMovie.movieID === movieId) {
           console.log("indside", thisMovie.movieID);
           uglyID = keys[index];
           movieIDsArray.push(thisMovie.movieID);
         }
       });
-      console.log("uglyID", uglyID);
-      console.log("idarray", movieIDsArray);
       if (movieIDsArray.indexOf(movieId) === -1) {
         movieDB.getSingleMovie(movieId)
         .then((data) => {
@@ -122,7 +116,6 @@ var handler = {
             inFB: true,
             uid: fire.getCurrentUser()
           };
-          console.log("movie", movie);
           fire.addToFB(movie);
           $(`#addButton--${movieId}`).remove();
           $(`#card-content--${movieId}`).append(`<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons removeButton" onclick="Materialize.toast('Movie Removed!', 3000, 'red') id="removeButton--${movieId}">remove</i></a>`);
@@ -136,8 +129,29 @@ var handler = {
 
   },
 
-  updateRating: function() {
-
+  untracked: function() {
+    $('#untracked').on('click', function(e) {
+      fire.getWatchList()
+      .then((data) => {
+        let movieIDsArray = [];
+        let keys = Object.keys(data);
+        $(keys).each((index, item) => {
+          let thisFBMovie = data[item];
+          movieIDsArray.push(thisFBMovie.movieID);
+        });
+        let movies = $('.movieCard');
+        $(movies).each((mindex, mitem) => {
+          let thisDivID = $(mitem).attr('id');
+          console.log("thisDivID", thisDivID);
+          let manipID = thisDivID.slice(6, thisDivID.length);
+          console.log("array", movieIDsArray);
+          console.log("manip", manipID);
+          if (movieIDsArray.indexOf(Number(manipID)) !== -1) {
+            $(mitem).addClass('is-hidden');
+          }
+        });
+      });
+    });
   }
 
 

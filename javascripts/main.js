@@ -30,7 +30,7 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
     if (e.keyCode === 13) {
       let movieSearch = document.getElementById("searchBar").value;
       let movieObject = {};
-
+      $("#mainSearchResults").html(" ");
       movieAPILoader.getMovies(movieSearch)
         .then((movieData)=>{
            console.log('movie data retrieved', movieData);
@@ -38,8 +38,14 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
            movies.forEach((item, index)=>{
                movieObject[index] = item;
            });
-           console.log("movieObject", movieObject);
-           loadMoviesToDOM(movieObject);
+          //  console.log("movieObject", movieObject);
+          //  loadMoviesToDOM(movieObject);
+          $("#mainSearchResults").append(movieTemplate(movieObject));
+          $("#searchBar").val(function() {
+            if (this.value.length == 0) {
+              return $(this).attr('placeholder');
+            }
+          });
         });
     }
 });
@@ -48,8 +54,10 @@ $('#userSearchBar').on('keyup', function(e) {
   if (e.keyCode === 13) {
     $("#untracked").fadeIn(2000).removeClass("is-hidden");
     firebase.getWatchList()
+    // .then((data) => {
+    //   loadMoviesToDOM(data);
     .then((data) => {
-      loadMoviesToDOM(data);
+      $("#userMovies").append(movieTemplate(data));
     });
   }
 });
@@ -83,4 +91,7 @@ $("#auth-btn").click(function() {
 $("#logout").click(() => {
   console.log("logout clicked");
   user.logout();
+  $("#profileView").hide();
+  $("#searchView").show();
+
 });

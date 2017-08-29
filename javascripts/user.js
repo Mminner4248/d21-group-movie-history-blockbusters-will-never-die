@@ -1,4 +1,5 @@
 "use strict";
+let $ = require('jquery');
 let firebase = require('../lib/node_modules/firebase');
 let provider = new firebase.auth.GoogleAuthProvider();
 let currentUser = null;
@@ -7,8 +8,13 @@ firebase.auth().onAuthStateChanged((user) => {
     if (user){
         currentUser = user.uid;
         console.log("current user Logged in?", currentUser);
+        $("#searchView").hide();
+        $("#profileView").show();
     }else {
         currentUser = null;
+        $("#mainSearchResults").html(" ");
+        $("#profileView").hide();
+        $("#searchView").show();
         console.log("current user NOT logged in:", currentUser);
     }
 });

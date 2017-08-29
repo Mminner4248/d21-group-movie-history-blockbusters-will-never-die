@@ -8,7 +8,9 @@
 		<span class='card-title activator grey-text text-darken-4 icon{{movieID}} col s10 truncate'>{{title}}</span>
 		<!-- Modal Trigger -->
 		  <a class="waves-effect waves-light btn modal-trigger modalBtn{{@index}}" href="#modal{{@index}}">Modal</a>
-			
+
+      {{alreadyFB this}}
+
 
 		  <!-- Modal Structure -->
 		  <div id="modal{{@index}}" class="modal">
@@ -28,7 +30,8 @@
 		<span class="card-title grey-text text-darken-4">Cast</span>
 		<p id="castReveal{{movieID}}"></p>
 		</div>
-		<div id="rateYo{{@index}}" class="rateYo"></div>
+		<div id="rateYo{{movieID}}" class="rateYo">{{stars this}}</div>
 	</div>
 </div>
+{{modal this}}
 {{/each}}

@@ -3,6 +3,7 @@
 let movieAPILoader = require('./api.js'),
     $ = require('jquery'),
     movieTemplate = require("../templates/movie-card.hbs"),
+    userTemplate = require('../templates/userCards.hbs'),
     handlebarHelper = require("./hbsHelpers.js"),
     handlers = require("./DOMHandlers.js"),
     firebase= require("./firebase.js"),
@@ -58,17 +59,15 @@ $('#userSearchBar').on('keyup', function(e) {
         movieIDArr.push(data[fitem].movieID);
         movieRatingArr.push(data[fitem].rating);
       });
-      console.log("movieIDArr", movieIDArr);
-      console.log("movieRatingArr", movieRatingArr);
       let search = $('#userSearchBar').val();
       movieAPILoader.getMovies(search)
       .then((movieData) => {
         let movies = movieData.results;
         $(movies).each((mindex, mitem) => {
-          console.log('poster_path', mitem.poster_path);
+          let year = mitem.release_date.slice(0, mitem.release_date.indexOf('-'));
           movieObj[mindex] = {
             title: mitem.title,
-            year: mitem.release_date,
+            year: year,
             poster: `http://image.tmdb.org/t/p/w342${mitem.poster_path}`,
             overview: mitem.overview,
             movieID: mitem.id,
@@ -102,8 +101,16 @@ function requestMovieByID(movieID) {
 
 
 function loadMoviesToDOM(movieData) {
-    $("#userMovies").append(movieTemplate(movieData));
+  // this needs to be changed once auth works correctly
+  if (firebase.getCurrentUser() === 111) {
+    $("#userMovies").html('');
+    $("#userMovies").append(userTemplate(movieData));
     handlers.addToFB();
+  } else {
+    $('#mainSearchResults').html('');
+    $('#mainSearchResults').append(movieTemplate(movieData));
+  }
+  handlers.loadCast();
 }
 
 

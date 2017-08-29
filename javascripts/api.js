@@ -33,19 +33,15 @@ var config = {
 	 });
 };
 
-
-
-MovieAPI.getMoviesWithCredits = (movieID) => {
-	return new Promise((resolve, reject) => {
-		$.ajax({
-           url: `${MovieAPI.getMDBSettings().databaseURL}/3/movie/${movieID}?api_key=${MovieAPI.getMDBSettings().apiKey}&language=en-US&append_to_response=credits`
-		}).done((movieDataWithCredits) => {
-			//console.log("movieData in promise", movieData);
-			resolve(movieDataWithCredits);
-		}).fail((error) => {
-			reject(error);
-		});
-	 });
+MovieAPI.getCredits = (id) => {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: `${MovieAPI.getMDBSettings().databaseURL}/3/movie/${id}/credits?api_key=${MovieAPI.getMDBSettings().apiKey}&language=en-US`
+    }).done((data) => {
+      resolve(data);
+    });
+  });
 };
+
 
 module.exports = MovieAPI;

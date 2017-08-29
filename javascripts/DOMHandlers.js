@@ -8,20 +8,23 @@ var handler = {
     $('.addButton').on('click', function(e) {
       let manipID = $(e.target).attr('id');
       let movieId = manipID.slice(manipID.indexOf('--')+2, manipID.length);
-      // This is probably unecessarry below but basically this just needs to push to firebase
-
-      // fire.getWatchList()
-      // .then((data) => {
-      //   console.log("data", data);
-      //   let keys = Object.keys(data);
-      //   console.log("keys", keys);
-      //   $(keys).each((windex, witem) => {
-      //     let thisMovie = data[witem];
-      //     if (thisMovie.movieID === movieId) {
-      //       console.log("title", thisMovie.title);
-      //     }
-      //   });
-      // });
+      movieDB.getSingleMovie(movieId)
+      .then((data) => {
+        let year = data.release_date.slice(0, data.release_date.indexOf('-'));
+        let movie = {
+          title: data.title,
+          year: year,
+          poster: `http://image.tmdb.org/t/p/w342${data.poster_path}`,
+          overview: data.overview,
+          movieID: data.id,
+          rating: $(e.target).attr('rating')*2,
+          watched: false,
+          inFB: true,
+          uid: fire.getCurrentUser()
+        };
+        console.log("movie", movie);
+        fire.addToFB(movie);
+      });
     });
   },
 
@@ -33,13 +36,21 @@ var handler = {
       .then((data) => {
         let id = data.id;
         $(`#castReveal${id}`).html('');
-        console.log('cast', data.cast);
         let cast = data.cast.slice(0, 4);
         for (var i = 0; i < cast.length; i++) {
           let member = cast[i].name;
           $(`#castReveal${id}`).append(`${member} | `);
         }
       });
+    });
+  },
+
+  removeFromFB: function() {
+    $('.removeButton').on('click', function(e) {
+      let manipID = $(e.target).attr('id');
+      let movieId = manipID.slice(manipID.indexOf('--')+2, manipID.length);
+      movieId = Number(movieId);
+      fire.removeFromFB(movieId);
     });
   }
 };

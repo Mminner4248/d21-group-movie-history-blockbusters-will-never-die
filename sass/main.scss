@@ -2,7 +2,6 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    // background-image: url("../images/collage-copy.jpg");
     background: url(../images/collage-copy.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -10,14 +9,7 @@ body {
     background-size: cover;
   }
 
-  //for sticky footer and nav bar
-//   main {
-//     flex: 1 0 auto;
-//   }
-
-
 // **** Card Styles **** //
-
 img.activator {
   height: 400px !important;
   overflow: hidden !important;
@@ -48,11 +40,11 @@ div.card-content {
     color: gray;
     text-align: center;
   }
+
 //PRINT TO DOM HOLDER
 #mainSearchResults{
     width: 100% auto;
 }
-
 
 ////USER VIEW SEARCH
 #userSearchBar{
@@ -85,14 +77,7 @@ div.card-content {
     color: black;
     width: 100%;
     min-height: 500px;
-    // background: white;
 }
-// #freeze{
-//     position: absolute;
-//     // position: fixed;
-//     margin-left: 3px;
-//     width: 21%;
-// }
 
 .toggle-btns{
     margin-bottom: 20px;
@@ -149,9 +134,6 @@ div.card-content {
 .is-hidden{
     display:none;
 }
-// .is-visible{
-//     visibility: visible;
-// }
 .btn-floating.btn-large.waves-effect.waves-light.green,
 .btn-floating.btn-large.waves-effect.waves-light.red{
     position: absolute;
@@ -163,7 +145,6 @@ div.card-content {
     margin-top: 50px;
     margin-left: -10px;
 }
-
 
 /********** Rating Search Icon ************/
 input[type=range]::-webkit-slider-thumb {

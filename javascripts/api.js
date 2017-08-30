@@ -1,6 +1,5 @@
 "use strict";
 // movie database api configure
-
 let MovieAPI = {};
 
 let $ = require("jquery"),
@@ -17,8 +16,6 @@ var config = {
     // console.log("getMDBSettings", config);
      return config;
 };
-
-//var movieSearch = "Star";
 
  MovieAPI.getMovies = (movieSearch) => {
 	return new Promise((resolve, reject) => {
@@ -52,6 +49,5 @@ MovieAPI.getSingleMovie = (id) => {
     });
   });
 };
-
 
 module.exports = MovieAPI;

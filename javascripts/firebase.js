@@ -16,10 +16,10 @@ var config = {
 
 firebase.initializeApp(config);
 
-movies.getMovies('the godfather')
-.then((data) => {
-  console.log("data", data);
-});
+// movies.getMovies('the godfather')
+// .then((data) => {
+//   console.log("data", data);
+// });
 
 let fdr = firebase.database();
 var fire = {

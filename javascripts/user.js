@@ -8,23 +8,22 @@ let fire = require('./firebase');
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user){
-      console.log("user", user);
-      $('#my-movies').html(user.displayName);
-      $('#userPic').attr('src', user.photoURL);
-      currentUser = user.uid;
-      $("#searchView").hide();
-      $("#profileView").show();
-      fire.getWatchList()
-      .then((data) => {
-        handler.loadMoviesToDOM(data);
-      });
-
+    //   console.log("user", user);
+    $('#my-movies').html(user.displayName);
+    $('#userPic').attr('src', user.photoURL);
+    currentUser = user.uid;
+    $("#searchView").hide();
+    $("#profileView").show();
+    setTimeout(fire.getWatchList()
+    .then((data) => {
+      handler.loadMoviesToDOM(data);
+    }), 200);
     }else {
         currentUser = null;
         $("#mainSearchResults").html(" ");
         $("#profileView").hide();
         $("#searchView").show();
-        console.log("current user NOT logged in:", currentUser);
+        // console.log("current user NOT logged in:", currentUser);
     }
 });
 

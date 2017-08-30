@@ -15,7 +15,6 @@ $("#unwatched").on("click", function(){
     $("#untracked").addClass("is-hidden");
     $(".appendBread").html(" ");
     $(".appendBread").append("> Unwatched Movies");
-    console.log("Display items from watchlist to the DOM");
     $("#userMovies").html(" ");
     toggleObject = {};
     firebase.getWatchList()
@@ -39,7 +38,6 @@ $("#watched").click(function(){
     $("#untracked").addClass("is-hidden");
     $(".appendBread").html(" ");
     $(".appendBread").append("> Watched Movies");
-    console.log("Display items from watchED to the DOM");
     $("#userMovies").html(" ");
     toggleObject = {};
     firebase.getWatchList()

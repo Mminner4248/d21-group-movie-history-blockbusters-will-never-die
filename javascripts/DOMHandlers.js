@@ -51,8 +51,8 @@ var handler = {
 
   removeFromFB: function() {
     $('.removeButton').on('click', function(e) {
-      console.log("target", e.target);
-      console.log("targetID", $(e.target).attr('id'));
+      // console.log("target", e.target);
+      // console.log("targetID", $(e.target).attr('id'));
       let manipID = $(e.target).attr('id');
       let movieId = manipID.slice(manipID.indexOf('--')+2, manipID.length);
       movieId = Number(movieId);
@@ -98,7 +98,7 @@ var handler = {
       $(keys).each((index, item) => {
         let thisMovie = data[item];
         if(thisMovie.movieID === movieId) {
-          console.log("indside", thisMovie.movieID);
+          // console.log("indside", thisMovie.movieID);
           uglyID = keys[index];
           movieIDsArray.push(thisMovie.movieID);
         }
@@ -127,8 +127,6 @@ var handler = {
           fire.updateRating(uglyID, rating);
       }
     });
-
-
   },
 
   untracked: function() {
@@ -144,10 +142,10 @@ var handler = {
         let movies = $('.movieCard');
         $(movies).each((mindex, mitem) => {
           let thisDivID = $(mitem).attr('id');
-          console.log("thisDivID", thisDivID);
+          // console.log("thisDivID", thisDivID);
           let manipID = thisDivID.slice(6, thisDivID.length);
-          console.log("array", movieIDsArray);
-          console.log("manip", manipID);
+          // console.log("array", movieIDsArray);
+          // console.log("manip", manipID);
           if (movieIDsArray.indexOf(Number(manipID)) !== -1) {
             $(mitem).addClass('is-hidden');
           }
@@ -155,9 +153,5 @@ var handler = {
       });
     });
   }
-
-
 };
-
-
 module.exports = handler;

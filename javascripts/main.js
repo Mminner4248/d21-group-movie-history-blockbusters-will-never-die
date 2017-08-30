@@ -66,7 +66,6 @@ $("#searchBar").on('keyup', function(e){ //clicks or presses enter
                }
             });
           }
-
           //  console.log("movieObject", movieObject);
           //  handlers.loadMoviesToDOM(movieObject);
           handlers.loadMoviesToDOM(movieObject);
@@ -151,7 +150,6 @@ $('#userSearchBar').on('keyup', function(e) {
   }
 });
 
-
 //This is where we are starting the firebase logInGoogle
 $("#auth-btn").click(function() {
   console.log("clicked auth");
@@ -162,5 +160,4 @@ $("#logout").click(() => {
   user.logout();
   $("#profileView").hide();
   $("#searchView").show();
-
 });
